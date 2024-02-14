@@ -1,0 +1,23 @@
+import { useMutation } from "@tanstack/react-query"
+import { loginApi } from "../../services/apiAuth";
+import {useQueryClient} from '@tanstack/react-query'
+import {useNavigate} from 'react-router-dom'
+function useLogin() {
+  const queryClient =useQueryClient()
+  const navigate = useNavigate()
+
+  const {  mutate : login, isLoading } = useMutation({
+    mutationFn:(data)=>loginApi(data),
+    onSuccess:(data)=>{
+      queryClient.setQueryData(["user"], data.admin);
+      localStorage.setItem("user",JSON.stringify(data.admin));
+
+      navigate('/')
+    }
+
+  });
+
+  return {login,isLoading}
+}
+
+export default useLogin
