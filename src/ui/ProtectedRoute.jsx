@@ -9,7 +9,7 @@ const FullPage = styled.div`
   justify-content: center;
   align-items: center;
 `;
-function ProtectedRoute({ children }) {
+function ProtectedRoute({children}) {
   const navigate = useNavigate();
   const { isAuthenticated } = useCurrentUser();
 
@@ -17,9 +17,9 @@ function ProtectedRoute({ children }) {
     if (!isAuthenticated) navigate("/login");
   }, [isAuthenticated, navigate]);
 
- 
- console.log(isAuthenticated)
-  if (isAuthenticated) return <Outlet/>;
+   console.log(isAuthenticated)
+
+  if (isAuthenticated) return  children;
 }
 
 export default ProtectedRoute;

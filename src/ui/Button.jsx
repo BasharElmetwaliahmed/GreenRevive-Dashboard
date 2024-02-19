@@ -48,15 +48,15 @@ const variations = {
   `,
 };
 
-const  Button=styled.button`
-  border:none;
+const Button = styled.button`
+  border: none;
   cursor: pointer;
   box-shadow: var(--shadow-sm);
-  ${props=>variations[props.variation]}
-  ${props=>sizes[props.size]}
+  ${(props) => variations[props.variation]}
+  ${(props) => sizes[props.size]}
   padding: 0.9rem 1.5rem;
-
-  `
+  margin: 1.6rem;
+`;
 
   Button.defaultProps={
     variation:'primary',

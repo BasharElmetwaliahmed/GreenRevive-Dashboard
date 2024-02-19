@@ -7,13 +7,14 @@ import { objectToFormData } from "../../utils/helpers";
 import useLogin from "./useLogin.js";
 
 function LoginForm() {
-  const { register, formState, handleSubmit } = useForm();
+  const { register, formState, handleSubmit ,setError } = useForm();
   const { login } = useLogin();
   const errors = formState.errors;
   function  submitHandler(data) {
     login(objectToFormData(data), {
       onError: (err) => {
         Object.keys(err).forEach(function (key) {
+          console.log(key)
           setError(key, { message: err[key] });
         });
       },
@@ -36,7 +37,7 @@ function LoginForm() {
           })}
         />
       </FormRow>
-      <FormRow label="password">
+      <FormRow label="password" error={errors?.password?.message}>
         <Input
           type="password"
           name="password"

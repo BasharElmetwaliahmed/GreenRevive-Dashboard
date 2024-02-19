@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const StyledTable = styled.div`
   border: 1px solid var(--color-grey-200);
+  text-align: center;
 
   font-size: 1.4rem;
   background-color: var(--color-grey-0);

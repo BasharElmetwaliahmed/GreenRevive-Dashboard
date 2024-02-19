@@ -6,7 +6,7 @@ import Button from "../../ui/Button";
 import useCreateUser from "./useCreateUser";
 import { objectToFormData } from "../../utils/helpers";
 
-function CreateUser() {
+function CreateUserForm() {
   const { register, formState, getValues, handleSubmit, setError } = useForm();
   const { createNewUser } = useCreateUser();
   const { errors } = formState;
@@ -91,4 +91,4 @@ function CreateUser() {
   );
 }
 
-export default CreateUser;
+export default CreateUserForm;

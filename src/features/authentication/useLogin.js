@@ -9,8 +9,8 @@ function useLogin() {
   const {  mutate : login, isLoading } = useMutation({
     mutationFn:(data)=>loginApi(data),
     onSuccess:(data)=>{
-      queryClient.setQueryData(["user"], data.admin);
-      localStorage.setItem("user",JSON.stringify(data.admin));
+      queryClient.setQueryData(["user"], data.user);
+      localStorage.setItem("user",JSON.stringify(data.user));
 
       navigate('/')
     }

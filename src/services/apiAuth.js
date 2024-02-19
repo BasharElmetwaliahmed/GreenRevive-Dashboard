@@ -11,24 +11,29 @@ export async function loginApi(useData) {
     });
     const  data  = await res.json();
     if (!res.ok) {
-      throw data;
+      throw data.errors;
     }
 
     return data.data;
-  } catch (error) {
-    console.log(error);
-    throw error.errors;
+  } catch (errors) {
+    console.log(errors);
+    throw errors;
   }
 }
 
 export async function logoutApi(token){
+  const headers = {
+    Accept: "application/json",
+    Authorization: `Bearer ${
+      localStorage.getItem("user")
+        ? JSON.parse(localStorage.getItem("user")).token
+        : ""
+    }`,
+  };
   try {
     const res = await fetch(`${BASE_URL}/api/admin/logout`, {
       method: "POST",
-      headers: {
-        Accept: "application/json",
-        Authorization: `Bearer ${token}`,
-      },
+      headers
     });
     if(!res.ok){
       throw new Error('some thing went wrong');

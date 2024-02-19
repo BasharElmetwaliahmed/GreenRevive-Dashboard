@@ -20,6 +20,10 @@ const Form = styled.form`
     
   overflow: hidden;
   font-size: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width:600px;
 `;
 
 export default Form;

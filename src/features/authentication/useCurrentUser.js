@@ -7,19 +7,17 @@ function useCurrentUser() {
   const user = queryClient.getQueryData(['user'])
 
   useEffect(() => {
-
     if (localStorage.getItem("user")){
-
+      setAuthenticated(true);
+    
       queryClient.setQueryData(
         ["user"],
         JSON.parse(localStorage.getItem("user"))
       );
-      setAuthenticated(true);
-    
     }
   }, [user]);
 
-  return { isAuthenticated , user };
+  return { isAuthenticated  , user };
 }
 
 export default useCurrentUser;

@@ -1,12 +1,14 @@
-import CreateUser from "../features/users/CreateUser"
-import UsersList from "../features/users/UsersList"
+import CreateUserButton from "../features/users/CreateUserButton";
+import UsersTable from "../features/users/UsersTable";
+import Search from "../ui/Search";
 
 function UsersRoles() {
   return (
     <div>
-      <UsersList/>
-      <CreateUser/></div>
-  )
+      <CreateUserButton/>
+      <UsersTable />
+    </div>
+  );
 }
 
-export default UsersRoles
+export default UsersRoles;

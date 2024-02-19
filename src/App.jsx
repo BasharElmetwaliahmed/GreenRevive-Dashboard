@@ -6,6 +6,7 @@ import { GlobalStyles } from "./styles/GlobalStyles";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import UsersRoles from "./pages/UsersRoles";
+import AppLayout from "./ui/AppLayout";
 
 
 const queryClient = new QueryClient();
@@ -17,7 +18,7 @@ function App() {
     <QueryClientProvider client={queryClient} contextSharing={true}>
       <BrowserRouter>
         <Routes>
-          <Route element={<ProtectedRoute />}>
+          <Route element={<AppLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/users" element={<UsersRoles />} />
           </Route>

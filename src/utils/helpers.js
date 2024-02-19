@@ -41,9 +41,4 @@ export const formatCurrency = (value) =>
   }
 
 
-  export const headers={
-    "Accept": "application/json",
-    "Authorization": `Bearer ${JSON.parse(localStorage.getItem("user")).token}`,
-    
-  }
 

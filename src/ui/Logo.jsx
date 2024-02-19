@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import Light from "../data/img/logo-light.png";
-import Dark from "../data/img/logo-dark.png";
-import { useDarkMode } from "../context/DarkModeContext";
+
 
 const StyledLogo = styled.div`
   text-align: center;
+  font-size: 8rem;
+  color: green;
 `;
 
 const Img = styled.img`
@@ -13,10 +13,9 @@ const Img = styled.img`
 `;
 
 function Logo() {
-  const { isDarkMode } = useDarkMode();
   return (
     <StyledLogo>
-      <Img src={isDarkMode ? Dark : Light} alt="Logo" />
+      Green Revive
     </StyledLogo>
   );
 }

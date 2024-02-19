@@ -3,7 +3,7 @@ import { deleteUserApi } from "../../services/apiUser";
 
 function useDeleteUser() {
   const queryClient = useQueryClient();
-  const { mutate: deleteUser, isLoading: isDeleting } = useMutation({
+  const mutation = useMutation({
     mutationFn: (id) => {
       deleteUserApi(id);
     },
@@ -18,7 +18,10 @@ function useDeleteUser() {
     },
   });
 
-  return { deleteUser, isDeleting };
+  const { mutate: deleteUser, status } = mutation;
+  console.log(mutation,status)
+
+  return { deleteUser, isDeleting: status === "loading" };
 }
 
 export default useDeleteUser;
