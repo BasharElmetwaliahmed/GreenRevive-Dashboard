@@ -1,6 +1,6 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteCategoryApi } from "../../services/apiCategories";
-
+import { toast } from "react-hot-toast";
 function useDeleteCategory() {
   const queryClient = useQueryClient();
   const mutation = useMutation({
@@ -8,7 +8,7 @@ function useDeleteCategory() {
       deleteCategoryApi(id);
     },
     onSuccess: () => {
-      console.log("Category deleted Successfully");
+      toast.success("Category deleted Successfully");
       queryClient.invalidateQueries({
         queryKey: ["categories"],
       });
@@ -17,7 +17,11 @@ function useDeleteCategory() {
       alert(err.message);
     },
   });
-  return {deleteCategory:mutation.mutate}
+  const { mutate, isLoading } = mutation;
+
+  console.log(mutation.isLoading);
+
+  return { deleteCategory: mutate, isDeleting: isLoading };
 }
 
-export default useDeleteCategory
+export default useDeleteCategory;

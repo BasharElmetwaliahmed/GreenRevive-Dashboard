@@ -2,16 +2,20 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createCategoryApi } from "../../services/apiCategories";
 
 function useCreateCategory() {
-      const queryClient = useQueryClient();
-      const { mutate: createNewCategory, isLoading } = useMutation({
-        mutationFn: (data) => createCategoryApi(data),
-        onSuccess: () => {
-          queryClient.invalidateQueries({
-            queryKey: ["categories"],
-          });
-        },
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: (data) => createCategoryApi(data),
+    onSuccess: () => {
+      toast.success("Category Created Successfully");
+      queryClient.invalidateQueries({
+        queryKey: ["categories"],
       });
-  return {createNewCategory, isLoading};
+    },
+  });
+  const { mutate: createNewCategory, isLoading } = mutation;
+
+
+  return { createNewCategory, isLoading };
 }
 
-export default useCreateCategory
+export default useCreateCategory;

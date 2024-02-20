@@ -9,7 +9,7 @@ export const GlobalStyles = createGlobalStyle`:root {
   --color-brand-700: #4338ca;
   --color-brand-800: #3730a3;
   --color-brand-900: #312e81;
-  &{
+  &.light-mode{
     
   /* Grey */
   --color-grey-0: #fff;

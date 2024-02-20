@@ -15,8 +15,9 @@ function CreateEditCategoryForm({ edit }) {
       ...edit,
     },
   });
-  const { createNewCategory } = useCreateCategory();
-  const { updateCategory } = useUpdateCategory();
+  const { createNewCategory ,isLoading:createLoading } = useCreateCategory();
+  const { updateCategory ,isLoading:updatingLoading } = useUpdateCategory();
+  const loading = createLoading || updatingLoading
   const { errors } = formState;
   function submitHandler(data) {
     console.log(typeof data.icon);
@@ -74,7 +75,7 @@ function CreateEditCategoryForm({ edit }) {
           })}
         />
       </FormRow>
-      <Button type="submit">Submit</Button>
+      <Button type="submit" disabled={loading}>Submit</Button>
     </Form>
   );
 }
