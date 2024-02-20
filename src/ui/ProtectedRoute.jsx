@@ -17,7 +17,6 @@ function ProtectedRoute({children}) {
     if (!isAuthenticated) navigate("/login");
   }, [isAuthenticated, navigate]);
 
-   console.log(isAuthenticated)
 
   if (isAuthenticated) return  children;
 }

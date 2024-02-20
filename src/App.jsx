@@ -4,9 +4,9 @@ import Home from "./pages/Home"
 import Login from "./pages/Login"
 import { GlobalStyles } from "./styles/GlobalStyles";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import ProtectedRoute from "./ui/ProtectedRoute";
 import UsersRoles from "./pages/UsersRoles";
 import AppLayout from "./ui/AppLayout";
+import Categories from "./pages/Categories";
 
 
 const queryClient = new QueryClient();
@@ -21,6 +21,7 @@ function App() {
           <Route element={<AppLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/users" element={<UsersRoles />} />
+            <Route path='categories' element={<Categories />} />
           </Route>
           <Route path="login" element={<Login />} />
         </Routes>

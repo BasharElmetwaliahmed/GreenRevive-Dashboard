@@ -19,7 +19,6 @@ function useDeleteUser() {
   });
 
   const { mutate: deleteUser, status } = mutation;
-  console.log(mutation,status)
 
   return { deleteUser, isDeleting: status === "loading" };
 }

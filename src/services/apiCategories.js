@@ -1,6 +1,6 @@
 import { BASE_URL } from "../utils/constants";
 
-export async function createUserApi(newUser) {
+export async function getCategories() {
   const headers = {
     Accept: "application/json",
     Authorization: `Bearer ${
@@ -11,25 +11,26 @@ export async function createUserApi(newUser) {
   };
 
   try {
-    const res = await fetch(`${BASE_URL}/api/admin/store`, {
-      method: "POST",
-
+    const res = await fetch(`${BASE_URL}/api/admin/category`, {
+      method: "GET",
       headers: headers,
-      body: newUser,
     });
 
     const data = await res.json();
+
+
     if (!res.ok) {
       throw data;
     }
 
-    return data;
+    return data.data.categories;
   } catch (error) {
     throw error.errors;
   }
 }
 
-export async function getUserApi(searchQuery,page) {
+
+export async function deleteCategoryApi(id) {
   const headers = {
     Accept: "application/json",
     Authorization: `Bearer ${
@@ -39,50 +40,8 @@ export async function getUserApi(searchQuery,page) {
     }`,
   };
   try {
-    let res;
-    if (!searchQuery) {
-      if(!page)
-      res = await fetch(`${BASE_URL}/api/admin/users`, {
-        method: "GET",
-        headers,
-      });
-      else{
-              res = await fetch(`${BASE_URL}/api/admin/users?page=${page}`, {
-                method: "GET",
-                headers,
-              });
-      }
-    } else {
-      res = await fetch(`${BASE_URL}/api/admin/search`, {
-        method: "POST",
-        headers,
-        body: searchQuery,
-      });
-    }
-    const { data } = await res.json();
-    if(!searchQuery)
-    return { data: data.users.data, count: data.users.total };
-    else{
-
-      return {data:data.data}
-    }
-  } catch (err) {
-    throw new Error(err);
-  }
-}
-
-export async function deleteUserApi(id) {
-  const headers = {
-    Accept: "application/json",
-    Authorization: `Bearer ${
-      localStorage.getItem("user")
-        ? JSON.parse(localStorage.getItem("user")).token
-        : ""
-    }`,
-  };
-  try {
-    const res = await fetch(`${BASE_URL}/api/admin/destroy/${id}`, {
-      method: "POST",
+    const res = await fetch(`${BASE_URL}/api/admin/category/${id}`, {
+      method: "DELETE",
       headers: headers,
     });
 
@@ -97,8 +56,39 @@ export async function deleteUserApi(id) {
   }
 }
 
-export async function changeUserRoleApi({ body, id }) {
-  console.log(body, id);
+export async function updateCategoryApi({id,updatedCategory}) {
+
+  const headers = {
+    Accept: "application/json",
+    Authorization: `Bearer ${
+      localStorage.getItem("user")
+        ? JSON.parse(localStorage.getItem("user")).token
+        : ""
+    }`,
+
+  };
+
+  try {
+    const res = await fetch(`${BASE_URL}/api/admin/category/${id}`, {
+      method: "POST",
+      headers: headers,
+      body: updatedCategory,
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      throw data;
+    }
+
+    return data;
+  } catch (error) {
+    throw error.errors;
+  }
+}
+
+
+
+export async function createCategoryApi(newCategory) {
   const headers = {
     Accept: "application/json",
     Authorization: `Bearer ${
@@ -107,11 +97,12 @@ export async function changeUserRoleApi({ body, id }) {
         : ""
     }`,
   };
+
   try {
-    const res = await fetch(`${BASE_URL}/api/admin/update/${id}`, {
+    const res = await fetch(`${BASE_URL}/api/admin/category`, {
       method: "POST",
-      headers,
-      body: body,
+      headers: headers,
+      body: newCategory,
     });
 
     const data = await res.json();

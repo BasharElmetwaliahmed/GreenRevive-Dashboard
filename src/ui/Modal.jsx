@@ -73,7 +73,6 @@ const Modal = ({ children }) => {
 const Window = ({ children, openName }) => {
   const { openModalName: windowName, close } = useContext(ModalContext);
   const { ref } = useClickOutSide(close);
-  console.log(windowName,'   +  ',openName)
 
   if (windowName !== openName) return;
 

@@ -1,24 +1,11 @@
 import Table from "../../ui/Table";
 import DeleteUser from "./DeleteUser";
-import { FaEdit } from "react-icons/fa";
 import styled from "styled-components";
 import { useState } from "react";
 import ChangeUser from "./ChangeUser";
+import EditButton from "../../ui/EditButton";
 
-const EditStyled = styled.button`
-  color: var(--color-grey-0);
-  width: fit-content;
-  background-color: blue;
-  border: none;
-  border-radius: 0.7rem;
-  font-size: 16px;
-  font-weight: 500;
-  padding: 0.8rem 1rem;
-  transition: all 0.3s;
-  &:hover {
-    opacity: 0.5;
-  }
-`;
+
 const StyledBox = styled.div`
   display: flex;
   gap: 1.2rem;
@@ -34,9 +21,7 @@ function UserRow({ user }) {
       <div>{email}</div>
       {isEdit ? <ChangeUser value={role} id={id} /> : <div>{role}</div>}
       <StyledBox>
-        <EditStyled onClick={() => setIsEdit(!isEdit)}>
-          <FaEdit />
-        </EditStyled>
+        <EditButton onClick={() => setIsEdit(!isEdit)} />
         <DeleteUser id={id} />
       </StyledBox>
     </Table.Row>
