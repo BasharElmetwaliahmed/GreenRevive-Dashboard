@@ -1,6 +1,7 @@
 import useLogout from "./useLogout"
 import { CiLogout } from "react-icons/ci";
 import styled from "styled-components";
+import ButtonIcon from "../../ui/ButtonIcon";
 const StyledLogout = styled.button`
   background-color: transparent;
   font-weight: 600;
@@ -17,9 +18,9 @@ const StyledLogout = styled.button`
 function LogoutButton() {
     const {logOut}  = useLogout()
   return (
-    <StyledLogout onClick={logOut} >
+    <ButtonIcon onClick={logOut} >
       <CiLogout/>
-    </StyledLogout>
+    </ButtonIcon>
   )
 }
 
