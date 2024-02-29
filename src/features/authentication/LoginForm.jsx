@@ -7,19 +7,18 @@ import { objectToFormData } from "../../utils/helpers";
 import useLogin from "./useLogin.js";
 
 function LoginForm() {
-  const { register, formState, handleSubmit ,setError } = useForm();
+  const { register, formState, handleSubmit, setError } = useForm();
   const { login } = useLogin();
   const errors = formState.errors;
-  function  submitHandler(data) {
+  function submitHandler(data) {
     login(objectToFormData(data), {
       onError: (err) => {
         Object.keys(err).forEach(function (key) {
-          console.log(key)
+          console.log(key);
           setError(key, { message: err[key] });
         });
       },
     });
-    
   }
   return (
     <Form onSubmit={handleSubmit(submitHandler)}>
@@ -31,7 +30,6 @@ function LoginForm() {
           {...register("email", {
             required: "Email is required",
             pattern: {
-              value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
               message: "Please enter a valid email address",
             },
           })}

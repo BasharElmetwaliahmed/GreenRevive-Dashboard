@@ -13,7 +13,6 @@ export async function loginApi(useData) {
     if (!res.ok) {
       throw data.errors;
     }
-
     return data.data;
   } catch (errors) {
     console.log(errors);

@@ -20,7 +20,6 @@ function CreateEditCategoryForm({ edit }) {
   const loading = createLoading || updatingLoading
   const { errors } = formState;
   function submitHandler(data) {
-    console.log(typeof data.icon);
     let form;
     if (typeof data.icon!=='string') {
       form = {

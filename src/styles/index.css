@@ -4,14 +4,14 @@
 
 :root {
   /* Indigo */
-  --color-brand-50: #eef2ff;
-  --color-brand-100: #e0e7ff;
-  --color-brand-200: #c7d2fe;
-  --color-brand-500: #6366f1;
-  --color-brand-600: #4f46e5;
-  --color-brand-700: #4338ca;
-  --color-brand-800: #3730a3;
-  --color-brand-900: #312e81;
+  --color-brand-50: #E8F5E9;
+  --color-brand-100: #C8E6C9;
+  --color-brand-200: #A5D6A7;
+  --color-brand-500: #4CAF50;
+  --color-brand-600: #43A047;
+  --color-brand-700: #388E3C;
+  --color-brand-800: #2E7D32;
+  --color-brand-900: #1B5E20;
 
   /* Grey */
   --color-grey-0: #fff;

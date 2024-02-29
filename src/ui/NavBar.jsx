@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FaUsers } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-import { MdOutlineCategory } from "react-icons/md";
+import { MdOutlineCategory, MdOutlineArticle } from "react-icons/md";
 
 const StyledNav = styled.nav`
   display: flex;
@@ -32,6 +32,10 @@ function NavBar() {
       <LinkStyled as={NavLink} to="/categories">
         <MdOutlineCategory />
         Categories
+      </LinkStyled>
+      <LinkStyled as={NavLink} to="/articles">
+        <MdOutlineArticle />
+        Articles
       </LinkStyled>
     </StyledNav>
   );
