@@ -15,7 +15,7 @@ const MainStyled = styled.main`
   border-left: 1px solid var(--color-grey-100);
   padding: 4rem 4.6rem 6rem;
   height: calc(100vh - 74px);
-  overflow-y: scroll;
+  overflow-y:auto;
 `;
 const Container = styled.div`
   margin: 0 auto;
@@ -26,7 +26,6 @@ const Container = styled.div`
 `;
 
 function AppLayout() {
-  console.log("AppLayout");
   return (
     <>
       <ProtectedRoute>

@@ -1,14 +1,8 @@
 import { BASE_URL } from "../utils/constants";
+import { headers } from "../utils/helpers";
 
 export async function getCategories() {
-  const headers = {
-    Accept: "application/json",
-    Authorization: `Bearer ${
-      localStorage.getItem("user")
-        ? JSON.parse(localStorage.getItem("user")).token
-        : ""
-    }`,
-  };
+
 
   try {
     const res = await fetch(`${BASE_URL}/api/admin/category`, {
@@ -31,14 +25,8 @@ export async function getCategories() {
 
 
 export async function deleteCategoryApi(id) {
-  const headers = {
-    Accept: "application/json",
-    Authorization: `Bearer ${
-      localStorage.getItem("user")
-        ? JSON.parse(localStorage.getItem("user")).token
-        : ""
-    }`,
-  };
+
+ 
   try {
     const res = await fetch(`${BASE_URL}/api/admin/category/${id}`, {
       method: "DELETE",
@@ -58,15 +46,7 @@ export async function deleteCategoryApi(id) {
 
 export async function updateCategoryApi({id,updatedCategory}) {
 
-  const headers = {
-    Accept: "application/json",
-    Authorization: `Bearer ${
-      localStorage.getItem("user")
-        ? JSON.parse(localStorage.getItem("user")).token
-        : ""
-    }`,
 
-  };
 
   try {
     const res = await fetch(`${BASE_URL}/api/admin/category/${id}`, {
@@ -89,14 +69,7 @@ export async function updateCategoryApi({id,updatedCategory}) {
 
 
 export async function createCategoryApi(newCategory) {
-  const headers = {
-    Accept: "application/json",
-    Authorization: `Bearer ${
-      localStorage.getItem("user")
-        ? JSON.parse(localStorage.getItem("user")).token
-        : ""
-    }`,
-  };
+
 
   try {
     const res = await fetch(`${BASE_URL}/api/admin/category`, {

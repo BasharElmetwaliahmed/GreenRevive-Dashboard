@@ -19,7 +19,6 @@ function useDeleteCategory() {
   });
   const { mutate, isLoading } = mutation;
 
-  console.log(mutation.isLoading);
 
   return { deleteCategory: mutate, isDeleting: isLoading };
 }

@@ -17,20 +17,7 @@ const StyledBox = styled.div`
   justify-content: center;
 `;
 
-const EditStyled = styled.button`
-  color: var(--color-grey-0);
-  width: fit-content;
-  background-color: blue;
-  border: none;
-  border-radius: 0.7rem;
-  font-size: 16px;
-  font-weight: 500;
-  padding: 0.8rem 1rem;
-  transition: all 0.3s;
-  &:hover {
-    opacity: 0.5;
-  }
-`;
+
 function CategoryRow({ category }) {
   const { id, name, icon  ,description} = category;
   return (

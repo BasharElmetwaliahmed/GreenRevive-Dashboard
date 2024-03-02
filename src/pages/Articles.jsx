@@ -2,6 +2,7 @@ import Button from "../ui/Button";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import Heading from "../ui/Heading";
+import ArticlesTable from "../features/Articles/ArticlesTable";
 
 const Container = styled.div`
   display: flex;
@@ -19,6 +20,7 @@ function Articles() {
           Create New Article
         </Button>
       </Container>
+      <ArticlesTable />
     </div>
   );
 }

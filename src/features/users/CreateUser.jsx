@@ -29,7 +29,7 @@ function CreateUserForm() {
   }
 
   return (
-    <Form onSubmit={handleSubmit(submitHandler)}>
+    <Form onSubmit={handleSubmit(submitHandler)} type='modal'>
       <FormRow label="name" error={errors?.name?.message}>
         <Input
           type="text"

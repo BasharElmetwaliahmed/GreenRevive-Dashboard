@@ -29,7 +29,7 @@ export async function createUserApi(newUser) {
   }
 }
 
-export async function getUserApi(searchQuery,page) {
+export async function getUserApi(searchQuery, page) {
   const headers = {
     Accept: "application/json",
     Authorization: `Bearer ${
@@ -41,16 +41,16 @@ export async function getUserApi(searchQuery,page) {
   try {
     let res;
     if (!searchQuery) {
-      if(!page)
-      res = await fetch(`${BASE_URL}/api/admin/users`, {
-        method: "GET",
-        headers,
-      });
-      else{
-              res = await fetch(`${BASE_URL}/api/admin/users?page=${page}`, {
-                method: "GET",
-                headers,
-              });
+      if (!page)
+        res = await fetch(`${BASE_URL}/api/admin/users`, {
+          method: "GET",
+          headers,
+        });
+      else {
+        res = await fetch(`${BASE_URL}/api/admin/users?page=${page}`, {
+          method: "GET",
+          headers,
+        });
       }
     } else {
       res = await fetch(`${BASE_URL}/api/admin/search`, {
@@ -59,12 +59,13 @@ export async function getUserApi(searchQuery,page) {
         body: searchQuery,
       });
     }
+    if (res.status === 401) {
+      localStorage.removeItem('user')
+    }
     const { data } = await res.json();
-    if(!searchQuery)
-    return { data: data.users.data, count: data.users.total };
-    else{
-
-      return {data:data.data}
+    if (!searchQuery) return { data: data.users.data, count: data.users.total };
+    else {
+      return { data: data.data };
     }
   } catch (err) {
     throw new Error(err);

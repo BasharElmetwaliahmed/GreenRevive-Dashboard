@@ -42,7 +42,7 @@ function CreateEditCategoryForm({ edit }) {
     }
   }
   return (
-    <Form onSubmit={handleSubmit(submitHandler)}>
+    <Form onSubmit={handleSubmit(submitHandler)} type='modal'>
       <FormRow label={"Category name"} error={errors?.name?.message}>
         <Input
           type="text"

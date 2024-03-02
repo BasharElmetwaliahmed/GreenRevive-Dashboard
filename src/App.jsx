@@ -22,7 +22,6 @@ const queryClient = new QueryClient();
 
 function App() {
   const { darkMode } = useDarkMode();
-  console.log(`${darkMode ? "dark" : "light"}`);
   return (
     <QueryClientProvider client={queryClient} contextSharing={true}>
       <BrowserRouter>

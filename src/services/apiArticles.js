@@ -2,8 +2,6 @@ import { BASE_URL } from "../utils/constants";
 import { headers } from "../utils/helpers";
 
 export async function createNewArticle(article) {
-
-  console.log(article)
   try {
     const res = await fetch(`${BASE_URL}/api/admin/articles`, {
       method: "POST",
@@ -15,10 +13,50 @@ export async function createNewArticle(article) {
     if (!res.ok) {
       throw data;
     }
-   console.log(data);
     return data;
   } catch (error) {
-    console.log(error);
     throw error.errors;
+  }
+}
+
+export async function getArticles(page) {
+  let res;
+  try {
+
+      res = await fetch(`${BASE_URL}/api/admin/articles?page=${page}`, {
+        method: "GET",
+        headers,
+      });
+    
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw data;
+    }
+    console.log(data);
+
+    return data.data.articles;
+  } catch (error) {
+    throw error.errors;
+  }
+}
+
+
+export async function deleteArticleApi(id) {
+  try {
+    const res = await fetch(`${BASE_URL}/api/admin/articles/${id}`, {
+      method: "DELETE",
+      headers: headers,
+    });
+    const  data = await res.json();
+    if (!res.ok) {
+      throw data.errors;
+    }
+
+    return data;
+  } catch (error) {
+    console.log('err + ', error)
+    throw new Error(error[0]);
   }
 }
