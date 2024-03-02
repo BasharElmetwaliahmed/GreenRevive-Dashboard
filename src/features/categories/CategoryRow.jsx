@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { BASE_URL } from "../../utils/constants";
 import Table from "../../ui/Table";
-import DeleteButton from "../../ui/DeleteStyled";
 import DeleteCategory from "./DeleteCategory";
 import EditButton from "../../ui/EditButton";
 import Modal from "../../ui/Modal";

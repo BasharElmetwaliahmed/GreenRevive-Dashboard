@@ -2,16 +2,18 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { deleteArticleApi } from "../../services/apiArticles";
 
-function useDeleteArticle() {
+function useDeleteArticle(id) {
   const queryClient = useQueryClient();
-  const { mutate: deleteArticle } = useMutation({
+  const mutation = useMutation({
     mutationFn: (id) => {
       deleteArticleApi(id);
     },
     onSuccess: (data) => {
-        console.log(data)
       toast.success("Article deleted Successfully");
-      queryClient.invalidateQueries({
+
+    },
+    onSettled:()=>{
+            queryClient.invalidateQueries({
         queryKey: ["articles"],
       });
     },
@@ -20,7 +22,9 @@ function useDeleteArticle() {
     },
   });
 
-  return { deleteArticle}
+  const { mutate: deleteArticle, isIdle } = mutation;
+  console.log(mutation,id);
+  return { deleteArticle,isLoading:isIdle==false };
 }
 
 export default useDeleteArticle;
