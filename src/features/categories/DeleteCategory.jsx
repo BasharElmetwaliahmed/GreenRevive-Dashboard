@@ -1,17 +1,26 @@
+import ConfirmDelete from "../../ui/ConfirmDelete";
 import DeleteButton from "../../ui/DeleteStyled";
+import Modal from "../../ui/Modal";
 import SpinnerMini from "../../ui/SpinnerMini";
 import useDeleteCategory from "./useDeleteCategory";
 
 function DeleteCategory({ id }) {
   const { deleteCategory, isDeleting } = useDeleteCategory();
   function handleDelete() {
-    if (confirm("are you sure you want to delete")) {
-      deleteCategory(id);
-    }
+    deleteCategory(id);
   }
   return (
     <>
-      {!isDeleting ? <DeleteButton onClick={handleDelete} /> : <SpinnerMini />}
+      <Modal.Window openName="delete-category">
+        <ConfirmDelete
+          onConfirm={handleDelete}
+          resourceName={"category"}
+          disabled={isDeleting}
+        />
+      </Modal.Window>
+      <Modal.Open name="delete-category">
+        <DeleteButton />
+      </Modal.Open>
     </>
   );
 }

@@ -7,20 +7,22 @@ function useDeleteCategory() {
     mutationFn: (id) => {
       deleteCategoryApi(id);
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       toast.success("Category deleted Successfully");
+    },
+    onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: ["categories"],
+        queryKey: ["articles"],
       });
     },
     onError: (err) => {
       alert(err.message);
     },
   });
-  const { mutate, isLoading } = mutation;
+  const { mutate, isIdle } = mutation;
 
 
-  return { deleteCategory: mutate, isDeleting: isLoading };
+  return { deleteCategory: mutate, isDeleting: isIdle == false };
 }
 
 export default useDeleteCategory;

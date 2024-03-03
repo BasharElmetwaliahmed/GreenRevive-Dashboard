@@ -1,29 +1,53 @@
 import { useState } from "react";
-import Select from "../../ui/Select";
+import ConfirmEdit from "../../ui/ConfirmEdit";
+import Modal from "../../ui/Modal";
 import { objectToFormData } from "../../utils/helpers";
 import useChangeRole from "./useChangeRole";
+import EditButton from "../../ui/EditButton";
+import { toast } from "react-hot-toast";
+import {  useQueryClient } from "@tanstack/react-query";
+
+
 
 function ChangeUser({ id, value }) {
   const [currentRole, setCurrentRole] = useState(value);
-  const { changeRole, isLoading } = useChangeRole();
-  function changeHandler(e) {
-    if (confirm("are you sure you want to change role")) {
-      setCurrentRole(e.target.value);
+  const queryClient = useQueryClient();
 
-      changeRole({body:objectToFormData({ role: e.target.value }), id});
-    }
+  const { changeRole, isLoading } = useChangeRole();
+  function submitChange(onCloseModal) {
+    changeRole(
+      { body: objectToFormData({ role: currentRole }), id },
+      {
+        onSuccess: () => {
+          toast.success("user role updated successfully");
+          queryClient.invalidateQueries({
+            queryKey: ["users"],
+          });
+          onCloseModal();
+        },
+      }
+    );
   }
+  function changeHandler(e) {
+    setCurrentRole(e.target.value);
+  }
+
   return (
     <div>
-      <Select
-        options={[
-          { value: "admin", label: "Admin" },
-          { value: "coordinator", label: "Coordinator" },
-          { value: "user", label: "User" },
-        ]}
-        value={currentRole}
-        onChange={changeHandler}
-      />
+      <Modal>
+        <Modal.Window openName="change-role">
+          <ConfirmEdit
+            onConfirm={submitChange}
+            onChange={changeHandler}
+            disabled={isLoading}
+            resourceName={"User role"}
+            currentRole={currentRole}
+          />
+        </Modal.Window>
+        <Modal.Open name="change-role">
+          <EditButton />
+        </Modal.Open>
+      </Modal>
     </div>
   );
 }

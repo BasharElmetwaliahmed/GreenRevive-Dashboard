@@ -45,7 +45,7 @@ export async function deleteCategoryApi(id) {
 }
 
 export async function updateCategoryApi({id,updatedCategory}) {
-
+console.log(id,updatedCategory)
   try {
     const res = await fetch(`${BASE_URL}/api/admin/category/${id}`, {
       method: "POST",
@@ -60,6 +60,7 @@ export async function updateCategoryApi({id,updatedCategory}) {
 
     return data;
   } catch (error) {
+    console.log(error)
     throw error.errors;
   }
 }

@@ -99,7 +99,6 @@ export async function deleteUserApi(id) {
 }
 
 export async function changeUserRoleApi({ body, id }) {
-  console.log(body, id);
   const headers = {
     Accept: "application/json",
     Authorization: `Bearer ${
@@ -116,6 +115,8 @@ export async function changeUserRoleApi({ body, id }) {
     });
 
     const data = await res.json();
+        console.log(data);
+
     if (!res.ok) {
       throw data;
     }

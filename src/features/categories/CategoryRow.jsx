@@ -5,6 +5,7 @@ import DeleteCategory from "./DeleteCategory";
 import EditButton from "../../ui/EditButton";
 import Modal from "../../ui/Modal";
 import CreateEditCategoryForm from "./CreateEditCategory";
+import ConfirmDelete from "../../ui/ConfirmDelete";
 
 const IconStyled = styled.img`
   width: 70px;
@@ -16,9 +17,8 @@ const StyledBox = styled.div`
   justify-content: center;
 `;
 
-
 function CategoryRow({ category }) {
-  const { id, name, icon  ,description} = category;
+  const { id, name, icon, description } = category;
   return (
     <Table.Row>
       <div>{id}</div>
@@ -27,13 +27,13 @@ function CategoryRow({ category }) {
       <StyledBox>
         <Modal>
           <Modal.Window openName="edit-category">
-            <CreateEditCategoryForm edit={{name,description,icon,id}} />
+            <CreateEditCategoryForm edit={{ name, description, icon, id }} />
           </Modal.Window>
           <Modal.Open name="edit-category">
             <EditButton />
           </Modal.Open>
+          <DeleteCategory id={id} />
         </Modal>
-        <DeleteCategory id={id} />
       </StyledBox>
     </Table.Row>
   );

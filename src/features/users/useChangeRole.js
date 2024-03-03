@@ -1,18 +1,12 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { changeUserRoleApi } from "../../services/apiUser";
 
 function useChangeRole() {
-  const queryClient=useQueryClient()
-  const { mutate: changeRole, isLoading } = useMutation({
+  const { mutate: changeRole, isPending } = useMutation({
     mutationFn: (data) => changeUserRoleApi(data),
-    onSuccess: () => {
-      console.log("role changed successfully");
-            queryClient.invalidateQueries({
-              queryKey: ["users"],
-            });
-    },
+
   });
-  return { changeRole, isLoading };
+  return { changeRole, isLoading :isPending};
 }
 
 export default useChangeRole;

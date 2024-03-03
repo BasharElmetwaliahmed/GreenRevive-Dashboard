@@ -1,3 +1,4 @@
+import { useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
@@ -8,20 +9,22 @@ import Textarea from "../../ui/Textarea";
 import { objectToFormData } from "../../utils/helpers";
 import useCreateCategory from "./useCreateCategory";
 import useUpdateCategory from "./useUpdateCategory";
-
-function CreateEditCategoryForm({ edit }) {
+import {toast } from 'react-hot-toast'
+function CreateEditCategoryForm({ edit, onCloseModal }) {
   const { register, formState, handleSubmit } = useForm({
     defaultValues: {
       ...edit,
     },
   });
-  const { createNewCategory ,isLoading:createLoading } = useCreateCategory();
-  const { updateCategory ,isLoading:updatingLoading } = useUpdateCategory();
-  const loading = createLoading || updatingLoading
+  const { createNewCategory, isLoading: createLoading } = useCreateCategory();
+  const queryClient = useQueryClient();
+
+  const { updateCategory, isLoading: updatingLoading } = useUpdateCategory();
+  const loading = createLoading || updatingLoading;
   const { errors } = formState;
   function submitHandler(data) {
     let form;
-    if (typeof data.icon!=='string') {
+    if (typeof data.icon !== "string") {
       form = {
         ...data,
         icon: data.icon[0],
@@ -33,16 +36,36 @@ function CreateEditCategoryForm({ edit }) {
       };
     }
     if (!edit) {
-      createNewCategory(objectToFormData(form));
-    } else {
-      updateCategory({
-        id: edit.id,
-        updatedCategory: objectToFormData(form),
+      createNewCategory(objectToFormData(form), {
+        onSuccess: () => {
+          toast.success("Category Created Successfully");
+          queryClient.invalidateQueries({
+            queryKey: ["categories"],
+          });
+          onCloseModal();
+        },
       });
+    } else {
+      updateCategory(
+        {
+          id: edit.id,
+          updatedCategory: objectToFormData(form),
+        },
+        {
+          onSuccess: () => {
+            toast.success("Category Updated Successfully");
+            queryClient.invalidateQueries({
+              queryKey: ["categories"],
+            });
+            onCloseModal();
+
+          },
+        }
+      );
     }
   }
   return (
-    <Form onSubmit={handleSubmit(submitHandler)} type='modal'>
+    <Form onSubmit={handleSubmit(submitHandler)} type="modal">
       <FormRow label={"Category name"} error={errors?.name?.message}>
         <Input
           type="text"
@@ -74,7 +97,9 @@ function CreateEditCategoryForm({ edit }) {
           })}
         />
       </FormRow>
-      <Button type="submit" disabled={loading}>Submit</Button>
+      <Button type="submit" disabled={loading}>
+        Submit
+      </Button>
     </Form>
   );
 }

@@ -6,9 +6,9 @@ import Button from "../../ui/Button";
 import useCreateUser from "./useCreateUser";
 import { objectToFormData } from "../../utils/helpers";
 
-function CreateUserForm() {
+function CreateUserForm({ onCloseModal }) {
   const { register, formState, getValues, handleSubmit, setError } = useForm();
-  const { createNewUser } = useCreateUser();
+  const { createNewUser, isLoading } = useCreateUser();
   const { errors } = formState;
   function submitHandler(data) {
     console.log(data);
@@ -19,6 +19,9 @@ function CreateUserForm() {
         password: data.password,
       }),
       {
+        onSuccess:()=>{
+          onCloseModal()
+        },
         onError: (err) => {
           Object.keys(err).forEach(function (key) {
             setError(key, { message: err[key] });
@@ -29,7 +32,7 @@ function CreateUserForm() {
   }
 
   return (
-    <Form onSubmit={handleSubmit(submitHandler)} type='modal'>
+    <Form onSubmit={handleSubmit(submitHandler)} type="modal">
       <FormRow label="name" error={errors?.name?.message}>
         <Input
           type="text"
@@ -86,7 +89,9 @@ function CreateUserForm() {
           })}
         />
       </FormRow>
-      <Button type="submit">Submit</Button>
+      <Button type="submit" disabled={isLoading}>
+        Submit
+      </Button>
     </Form>
   );
 }

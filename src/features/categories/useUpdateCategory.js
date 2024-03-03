@@ -3,15 +3,11 @@ import {  updateCategoryApi } from "../../services/apiCategories";
 
 function useUpdateCategory() {
   const queryClient = useQueryClient();
-  const { mutate: updateCategory, isLoading } = useMutation({
+  const { mutate: updateCategory, isPending } = useMutation({
     mutationFn: (data) => updateCategoryApi(data),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["categories"],
-      });
-    },
+
   });
-  return { updateCategory, isLoading };
+  return { updateCategory, isPending };
 }
 
 export default useUpdateCategory;

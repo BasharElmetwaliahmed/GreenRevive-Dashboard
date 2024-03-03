@@ -23,7 +23,6 @@ function useDeleteArticle(id) {
   });
 
   const { mutate: deleteArticle, isIdle } = mutation;
-  console.log(mutation,id);
   return { deleteArticle,isLoading:isIdle==false };
 }
 

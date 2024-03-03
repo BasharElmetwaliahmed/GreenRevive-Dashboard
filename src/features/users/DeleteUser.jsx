@@ -7,18 +7,17 @@ import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 
 function DeleteUser({ id }) {
-  const { deleteUser, isDeleting } = useDeleteUser();
+  const { deleteUser, isLoading } = useDeleteUser();
   function handleDelete() {
     deleteUser(id);
   }
-  if (isDeleting) return <SpinnerMini />;
   return (
     <Modal>
       <Modal.Window openName="delete-user">
-        <ConfirmDelete onConfirm={handleDelete} resourceName={"user"} />
+        <ConfirmDelete onConfirm={handleDelete} disabled={isLoading} resourceName={"user"} />
       </Modal.Window>
       <Modal.Open name="delete-user">
-        <DeleteButton onClick={handleDelete} />
+        <DeleteButton />
       </Modal.Open>
     </Modal>
   );

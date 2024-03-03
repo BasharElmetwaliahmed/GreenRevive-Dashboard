@@ -27,7 +27,7 @@ function ArticleTextEditor() {
         .then((response) => response.json())
         .then((result) => {
           console.log(result);
-          resolve(`${BASE_URL}/${result.data["Upload media Path"]}`);
+          resolve(result.data["Upload media Path"]);
         })
         .catch((error) => {
           console.error(error);
@@ -74,7 +74,7 @@ function ArticleTextEditor() {
           automatic_uploads: true,
           images_reuse_filename: true,
           images_upload_handler: handleUploadImage,
-          document_base_url:``,
+          document_base_url:`${BASE_URL}`,
           skin: darkMode ? "oxide-dark" : null,
           content_css: darkMode ? "dark" : null,
           //   content_style:

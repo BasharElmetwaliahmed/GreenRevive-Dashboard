@@ -19,9 +19,9 @@ function useDeleteUser() {
     },
   });
 
-  const { mutate: deleteUser, status } = mutation;
+  const { mutate: deleteUser, isIdle } = mutation;
 
-  return { deleteUser, isDeleting: status === "loading" };
+  return { deleteUser, isLoading: isIdle == false };
 }
 
 export default useDeleteUser;

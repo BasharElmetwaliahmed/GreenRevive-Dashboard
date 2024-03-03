@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   QueryClient,
   QueryClientProvider,
-  useQuery,
 } from "@tanstack/react-query";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -21,7 +20,6 @@ import CreateArticle from "./pages/CreateArticle";
 const queryClient = new QueryClient();
 
 function App() {
-  const { darkMode } = useDarkMode();
   return (
     <QueryClientProvider client={queryClient} contextSharing={true}>
       <BrowserRouter>

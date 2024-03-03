@@ -32,7 +32,6 @@ export async function getArticles(page) {
     if (!res.ok) {
       throw data;
     }
-    console.log(data);
 
     return data.data.articles;
   } catch (error) {
@@ -59,6 +58,7 @@ export async function deleteArticleApi(id) {
 }
 
 export async function updateArticleApi({ id, updatedArticle }) {
+  
   try {
     const res = await fetch(`${BASE_URL}/api/admin/articles/${id}/edit`, {
       method: "POST",

@@ -1,9 +1,7 @@
 import Table from "../../ui/Table";
 import DeleteUser from "./DeleteUser";
 import styled from "styled-components";
-import { useState } from "react";
 import ChangeUser from "./ChangeUser";
-import EditButton from "../../ui/EditButton";
 
 
 const StyledBox = styled.div`
@@ -13,15 +11,14 @@ const StyledBox = styled.div`
 `;
 function UserRow({ user }) {
   const { id, name, role, email } = user;
-  const [isEdit, setIsEdit] = useState();
   return (
     <Table.Row>
       <div>{id}</div>
       <div>{name}</div>
       <div>{email}</div>
-      {isEdit ? <ChangeUser value={role} id={id} /> : <div>{role}</div>}
+      <div>{role}</div>
       <StyledBox>
-        <EditButton onClick={() => setIsEdit(!isEdit)} />
+        <ChangeUser value={role} id={id}  />
         <DeleteUser id={id} />
       </StyledBox>
     </Table.Row>
