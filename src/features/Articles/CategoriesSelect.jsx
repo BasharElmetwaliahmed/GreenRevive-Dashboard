@@ -19,7 +19,6 @@ function CategoriesSelect() {
   const { categories, isLoading } = useCategories();
   const { register } = useFormContext();
   if (isLoading) return null;
-  console.log(categories);
   const CategoriesList = categories.map((category) => {
     return {
       value: category.id,

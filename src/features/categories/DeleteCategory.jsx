@@ -5,7 +5,7 @@ import SpinnerMini from "../../ui/SpinnerMini";
 import useDeleteCategory from "./useDeleteCategory";
 
 function DeleteCategory({ id }) {
-  const { deleteCategory, isDeleting } = useDeleteCategory();
+  const { deleteCategory, isLoading } = useDeleteCategory();
   function handleDelete() {
     deleteCategory(id);
   }
@@ -15,7 +15,7 @@ function DeleteCategory({ id }) {
         <ConfirmDelete
           onConfirm={handleDelete}
           resourceName={"category"}
-          disabled={isDeleting}
+          disabled={isLoading}
         />
       </Modal.Window>
       <Modal.Open name="delete-category">

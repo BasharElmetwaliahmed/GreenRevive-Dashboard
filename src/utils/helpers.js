@@ -1,5 +1,35 @@
 import { formatDistance, parseISO } from "date-fns";
 import { differenceInDays } from "date-fns";
+import { getToken } from "firebase/messaging";
+import { messaging } from "./firebase";
+
+const { VITE_APP_VAPID_KEY } = import.meta.env;
+
+export async function requestPermission() {
+  //requesting permission using Notification API
+  const permission = await Notification.requestPermission();
+
+  if (permission === "granted") {
+    const token = await getToken(messaging, {
+      vapidKey: VITE_APP_VAPID_KEY,
+    });
+
+    //We can send token to server
+    console.log("Token generated : ", token);
+  } else if (permission === "denied") {
+    //notifications are blocked
+    alert("You denied for the notification");
+  }
+}
+
+
+
+
+
+
+
+
+
 
 // We want to make this function work for both Date objects and strings (which come from Supabase)
 export const subtractDates = (dateStr1, dateStr2) =>

@@ -5,6 +5,7 @@ function useDeleteCategory() {
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: (id) => {
+      console.log('deleteCategory')
       deleteCategoryApi(id);
     },
     onSuccess: (data) => {
@@ -12,7 +13,7 @@ function useDeleteCategory() {
     },
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: ["articles"],
+        queryKey: ["categories"],
       });
     },
     onError: (err) => {
@@ -22,7 +23,7 @@ function useDeleteCategory() {
   const { mutate, isIdle } = mutation;
 
 
-  return { deleteCategory: mutate, isDeleting: isIdle == false };
+  return { deleteCategory: mutate, isLoading: isIdle == false };
 }
 
 export default useDeleteCategory;

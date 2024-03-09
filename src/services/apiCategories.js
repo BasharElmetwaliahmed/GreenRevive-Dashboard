@@ -2,7 +2,7 @@ import { BASE_URL } from "../utils/constants";
 import { headers } from "../utils/helpers";
 
 export async function getCategories() {
-
+  console.log(categories);
 
   try {
     const res = await fetch(`${BASE_URL}/api/admin/category`, {
@@ -26,7 +26,7 @@ export async function getCategories() {
 
 export async function deleteCategoryApi(id) {
 
- 
+   console.log(id)
   try {
     const res = await fetch(`${BASE_URL}/api/admin/category/${id}`, {
       method: "DELETE",
@@ -38,6 +38,7 @@ export async function deleteCategoryApi(id) {
       throw data;
     }
 
+    console.log(data)
     return data;
   } catch (error) {
     throw error.errors;

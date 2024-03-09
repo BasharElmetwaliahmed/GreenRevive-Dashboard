@@ -18,7 +18,7 @@ function ArticleTextEditor() {
     return new Promise((resolve, reject) => {
       const formData = new FormData();
       formData.append("media", blobInfo.blob());
-
+    tinymce.
       fetch(`${BASE_URL}/api/admin/upload_media/store`, {
         method: "POST",
         headers,
@@ -77,12 +77,11 @@ function ArticleTextEditor() {
           document_base_url:`${BASE_URL}`,
           skin: darkMode ? "oxide-dark" : null,
           content_css: darkMode ? "dark" : null,
-          //   content_style:
-          //     "body { font-family:Helvetica,Arial,sans-serif; font-size:30px ;background-color:var(--color-grey-0); }",
+            // content_style:
+            //   "body { font-family:Helvetica,Arial,sans-serif; font-size:30px ;background-color:var(--color-grey-0); }",
         }}
         onEditorChange={(e)=>setValue('content',e)}
-        onKeyDown = {(e)=>{
-          console.log("onKeyDown",e);        }}
+
       />
     </TextEditorContainer>
   );

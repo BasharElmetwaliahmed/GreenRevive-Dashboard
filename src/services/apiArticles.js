@@ -10,9 +10,11 @@ export async function createNewArticle(article) {
     });
 
     const data = await res.json();
+
     if (!res.ok) {
       throw data;
     }
+
     return data;
   } catch (error) {
     throw error.errors;
@@ -58,7 +60,6 @@ export async function deleteArticleApi(id) {
 }
 
 export async function updateArticleApi({ id, updatedArticle }) {
-  
   try {
     const res = await fetch(`${BASE_URL}/api/admin/articles/${id}/edit`, {
       method: "POST",

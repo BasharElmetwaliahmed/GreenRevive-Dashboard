@@ -8,7 +8,7 @@ function useDeleteArticle(id) {
     mutationFn: (id) => {
       deleteArticleApi(id);
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast.success("Article deleted Successfully");
 
     },

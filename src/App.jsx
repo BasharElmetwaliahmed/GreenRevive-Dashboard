@@ -14,12 +14,22 @@ import { useDarkMode } from "./context/DarkModeProvider";
 import { Toaster } from "react-hot-toast";
 import Articles from "./pages/Articles";
 import CreateArticle from "./pages/CreateArticle";
+import { useEffect } from "react";
+import { onMessage } from "firebase/messaging";
+import { messaging } from "./utils/firebase";
+import UserSettings from "./pages/UserSettings";
 
 
 
 const queryClient = new QueryClient();
 
 function App() {
+      onMessage(messaging, (payload) => {
+        console.log(payload);
+      });
+    useEffect(()=>{
+
+    },[])
   return (
     <QueryClientProvider client={queryClient} contextSharing={true}>
       <BrowserRouter>
@@ -30,6 +40,7 @@ function App() {
             <Route path="categories" element={<Categories />} />
             <Route path="articles" element={<Articles />} />
             <Route path='articles/create' element={<CreateArticle />} />
+            <Route path='usersettings' element={<UserSettings/>}/>
           </Route>
           <Route path="login" element={<Login />} />
         </Routes>

@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
+import { requestPermission } from "../utils/helpers";
 import Header from "./Header";
 import ProtectedRoute from "./ProtectedRoute";
 import SideBar from "./SideBar";
@@ -26,7 +28,10 @@ const Container = styled.div`
 `;
 
 function AppLayout() {
-  return (
+  useEffect(()=>{
+   requestPermission();
+  },[])
+    return (
     <>
       <ProtectedRoute>
         <AppLayoutStyled>

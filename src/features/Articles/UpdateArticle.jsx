@@ -22,7 +22,6 @@ function UpdateArticle({ id, onCloseModal }) {
       }
     });
   }
-  console.log(isLoading);
   return (
     <Form type="modal" onSubmit={handleSubmit(submitHandler)}>
       <FormRow label={"Master Image"} error={errors?.icon?.message}>
