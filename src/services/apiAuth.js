@@ -1,13 +1,15 @@
+import toast from "react-hot-toast";
 import { BASE_URL } from "../utils/constants";
 
-export async function loginApi(useData) {
+export async function loginApi(userData) {
+  console.log(userData)
   try {
     const res = await fetch(`${BASE_URL}/api/admin/login`, {
       method: "POST",
       headers: {
         accept: "application/json",
       },
-      body: useData,
+      body: userData,
     });
     const  data  = await res.json();
     if (!res.ok) {
@@ -15,7 +17,8 @@ export async function loginApi(useData) {
     }
     return data.data;
   } catch (errors) {
-    console.log(errors);
+
+
     throw errors;
   }
 }
@@ -38,6 +41,8 @@ export async function logoutApi(token){
       throw new Error('some thing went wrong');
     }
   } catch (err) {
+    console.log(err)
+    toast.error(err.message[0])
     throw new Error(err);
   }
 

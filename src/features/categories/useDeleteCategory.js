@@ -5,10 +5,9 @@ function useDeleteCategory() {
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: (id) => {
-      console.log('deleteCategory')
       deleteCategoryApi(id);
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast.success("Category deleted Successfully");
     },
     onSettled: () => {

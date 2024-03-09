@@ -115,7 +115,6 @@ export async function changeUserRoleApi({ body, id }) {
     });
 
     const data = await res.json();
-        console.log(data);
 
     if (!res.ok) {
       throw data;

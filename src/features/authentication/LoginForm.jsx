@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import Button from "../../ui/Button";
 import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
@@ -13,10 +14,12 @@ function LoginForm() {
   function submitHandler(data) {
     login(objectToFormData(data), {
       onError: (err) => {
-        Object.keys(err).forEach(function (key) {
-          console.log(key);
-          setError(key, { message: err[key] });
-        });
+        if (err.message) toast.error(err.message);
+        else
+          Object.keys(err).forEach(function (key) {
+            console.log(key);
+            setError(key, { message: err[key] });
+          });
       },
     });
   }

@@ -1,7 +1,14 @@
 import { BASE_URL } from "../utils/constants";
-import { headers } from "../utils/helpers";
 
 export async function createNewArticle(article) {
+    const headers = {
+      Accept: "application/json",
+      Authorization: `Bearer ${
+        localStorage.getItem("user")
+          ? JSON.parse(localStorage.getItem("user")).token
+          : ""
+      }`,
+    };
   try {
     const res = await fetch(`${BASE_URL}/api/admin/articles`, {
       method: "POST",
@@ -23,6 +30,15 @@ export async function createNewArticle(article) {
 
 export async function getArticles(page) {
   let res;
+  const headers = {
+    Accept: "application/json",
+    Authorization: `Bearer ${
+      localStorage.getItem("user")
+        ? JSON.parse(localStorage.getItem("user")).token
+        : ""
+    }`,
+  };
+
   try {
     res = await fetch(`${BASE_URL}/api/admin/articles?page=${page}`, {
       method: "GET",

@@ -1,7 +1,12 @@
+import DeleteAccount from "../features/usersettings/DeleteAccount"
+import Heading from "../ui/Heading"
 
 function UserSettings() {
   return (
-    <div>UserSettings</div>
+    <div>
+      <Heading>Change Password</Heading>
+      <DeleteAccount/>
+    </div>
   )
 }
 
