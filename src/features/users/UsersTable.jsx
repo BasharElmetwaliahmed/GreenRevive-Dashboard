@@ -1,5 +1,5 @@
-import Pagination from "../../../../wild/wild-oasis/src/ui/Pagination";
 import Empty from "../../ui/Empty";
+import Pagination from "../../ui/Pagination";
 import Spinner from "../../ui/Spinner";
 import Table from "../../ui/Table";
 import UserRow from "./UserRow";
