@@ -3,6 +3,7 @@ import { FaUsers } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { MdOutlineCategory, MdOutlineArticle } from "react-icons/md";
 import { GrUserSettings } from "react-icons/gr";
+import useCurrentUser from "../features/authentication/useCurrentUser";
 
 const StyledNav = styled.nav`
   display: flex;
@@ -34,22 +35,28 @@ const LinkStyled = styled.a`
   }
 `;
 function NavBar() {
+  const {user} = useCurrentUser();
+
   return (
     <StyledNav>
-      <LinkStyled as={NavLink} to="/users">
-        <FaUsers />
-        Users/Roles
-      </LinkStyled>
-      <LinkStyled as={NavLink} to="/categories">
-        <MdOutlineCategory />
-        Categories
-      </LinkStyled>
-      <LinkStyled as={NavLink} to="/articles">
-        <MdOutlineArticle />
-        Articles
-      </LinkStyled>
+      { user?.role!=='coordinator' &&
+        <>
+          <LinkStyled as={NavLink} to="/users">
+            <FaUsers />
+            Users/Roles
+          </LinkStyled>
+          <LinkStyled as={NavLink} to="/categories">
+            <MdOutlineCategory />
+            Categories
+          </LinkStyled>
+          <LinkStyled as={NavLink} to="/articles">
+            <MdOutlineArticle />
+            Articles
+          </LinkStyled>
+        </>
+      }
       <LinkStyled as={NavLink} to="/usersettings">
-        <GrUserSettings/>
+        <GrUserSettings />
         User Settings
       </LinkStyled>
     </StyledNav>

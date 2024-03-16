@@ -17,7 +17,6 @@ const NameHeader = styled.h2`
 `;
 function Header() {
   const { user } = useCurrentUser();
-  console.log(user);
   return (
     <HeaderStyled>
       {user && <NameHeader>Wecome {user.name.split(" ")[0]}!</NameHeader>}

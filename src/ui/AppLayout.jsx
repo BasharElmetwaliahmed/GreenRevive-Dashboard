@@ -28,9 +28,9 @@ const Container = styled.div`
 `;
 
 function AppLayout() {
-  useEffect(()=>{
-   requestPermission();
-  },[])
+  // useEffect(()=>{
+  //  requestPermission();
+  // },[])
     return (
     <>
       <ProtectedRoute>

@@ -24,12 +24,7 @@ import UserSettings from "./pages/UserSettings";
 const queryClient = new QueryClient();
 
 function App() {
-      onMessage(messaging, (payload) => {
-        console.log(payload);
-      });
-    useEffect(()=>{
 
-    },[])
   return (
     <QueryClientProvider client={queryClient} contextSharing={true}>
       <BrowserRouter>
@@ -46,7 +41,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       <GlobalStyles />
-      <ReactQueryDevtools />
+      {/* <ReactQueryDevtools /> */}
       <Toaster
         gutter={8}
         toastOptions={{

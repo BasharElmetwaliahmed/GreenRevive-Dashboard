@@ -18,6 +18,11 @@ const Form = styled.form`
       width: 80rem;
     `}
     
+  ${(props) =>
+    props.type === "login" &&
+    css`
+      width: 55rem;
+    `}
   overflow: hidden;
   font-size: 1.4rem;
   display: flex;

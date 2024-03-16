@@ -2,7 +2,6 @@ import toast from "react-hot-toast";
 import { BASE_URL } from "../utils/constants";
 
 export async function loginApi(userData) {
-  console.log(userData)
   try {
     const res = await fetch(`${BASE_URL}/api/admin/login`, {
       method: "POST",

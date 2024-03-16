@@ -24,10 +24,11 @@ function LoginForm() {
     });
   }
   return (
-    <Form onSubmit={handleSubmit(submitHandler)}>
+    <Form onSubmit={handleSubmit(submitHandler)} type='login'>
       <FormRow label="email" error={errors?.email?.message}>
         <Input
           type="email"
+          defaultValue='test123@gmail.com'
           name="email"
           id="email"
           {...register("email", {
@@ -42,6 +43,7 @@ function LoginForm() {
         <Input
           type="password"
           name="password"
+          defaultValue='12345678..m'
           id="password"
           {...register("password", {
             required: "Password is required",

@@ -11,7 +11,6 @@ function CreateUserForm({ onCloseModal }) {
   const { createNewUser, isLoading } = useCreateUser();
   const { errors } = formState;
   function submitHandler(data) {
-    console.log(data);
     createNewUser(
       objectToFormData({
         name: data.name,
